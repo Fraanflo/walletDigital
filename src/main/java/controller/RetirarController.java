@@ -28,6 +28,17 @@ public class RetirarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioService usuarioService;
 	private UsuarioDAO usuarioDao;
+	
+	
+
+	public RetirarController() {
+		super();
+	}
+	public RetirarController(UsuarioService usuarioService, UsuarioDAO usuarioDao) {
+		super();
+		this.usuarioService = usuarioService;
+		this.usuarioDao = usuarioDao;
+	}
 	/**
      * Inicializa el servlet y su entorno de ejecución
      * 
@@ -53,13 +64,13 @@ public class RetirarController extends HttpServlet {
      */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String nombre = req.getParameter("nombre");
-		String montoParam = req.getParameter("monto");
-		int monto = Integer.parseInt(montoParam);
-
 		HttpSession session = req.getSession();
+		String montoParam = req.getParameter("monto");
+        int monto = Integer.parseInt(montoParam);
+    	
+      
+        String correo = (String) session.getAttribute("correo");
 
-		String correo = (String) session.getAttribute("correo");
 
 		if (correo != null) {
 
@@ -79,15 +90,17 @@ public class RetirarController extends HttpServlet {
 					session.setAttribute("correo", correo);// obtener correo luego de la transacción
                     // redirige a la página de confirmación retiro
  
-					  RequestDispatcher dispatcher = req.getRequestDispatcher("confirmacion-retiro.jsp");
-	                    dispatcher.forward(req, resp);
+					 // redirige a la página de confirmación deposito
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("/confirmacion-retiro.jsp");
+                    System.out.println("Dispatcher: " + dispatcher);
+                    dispatcher.forward(req, resp);
 				} else {
 					// redirigir a una página de error en caso de que no se actualice en la bd
-					resp.sendRedirect("/errorBD.jsp");
+					resp.sendRedirect("errorBD.jsp");
 				}
 			} else {
 				// si no hay suficiente saldo o monto inválido
-				resp.sendRedirect("/error-retiro.jsp");
+				resp.sendRedirect("error-retiro.jsp");
 			}
 
 		}

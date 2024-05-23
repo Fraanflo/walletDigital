@@ -28,6 +28,18 @@ public class MenuUsuarioController extends HttpServlet{
 	private UsuarioService usuarioService;
 	private UsuarioDAO usuarioDao;
 	
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+	
+	public MenuUsuarioController(UsuarioService usuarioService, UsuarioDAO usuarioDao) {
+		super();
+		this.usuarioService = usuarioService;
+		this.usuarioDao = usuarioDao;
+	}
+
+
+
 	/**
      * Inicializa el servlet y prepara el entorno de ejecución
      * 
@@ -60,7 +72,7 @@ public class MenuUsuarioController extends HttpServlet{
 		HttpSession session = req.getSession();
 	    String correo = (String) session.getAttribute("correo"); // Obtener el correo de la sesión
 
-	    if (correo != null) {
+	    if (correo != null ) {
 	    
 
 	        int saldo = usuarioService.obtenerSaldoUsuario(correo);
@@ -69,19 +81,26 @@ public class MenuUsuarioController extends HttpServlet{
 	        session.setAttribute("nombre", nombre1);
 	        String accion = req.getParameter("accion");
 	        
-	        if (accion != null && !accion.isEmpty()) {
+	        if (accion != null) {
 	            if (accion.equals("depositar")) {
 	                resp.sendRedirect("depositar.jsp");
 	            } else if (accion.equals("retirar")) {
 	                resp.sendRedirect("retirar.jsp");
 	            } else {
-	        // Si el correo no está presente en la sesión, redirigir al inicio de sesión
+	        // cualquier otra accion
 	        resp.sendRedirect("inicio_sesion.jsp");
 	            }
 	        }
+	    }else{
+	    	resp.sendRedirect("inicio_sesion.jsp"); //si el correo es null...
 	    }
 	}
-}
+
+
+
+	
+	}
+
 	    
 	
 

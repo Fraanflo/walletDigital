@@ -75,7 +75,6 @@ public class DepositarController extends HttpServlet{
         String correo = (String) session.getAttribute("correo");
 
         if (correo != null) {
-        	String nombre= (String) req.getAttribute("nombre");
         	int saldoActual = (int) session.getAttribute("saldo");
         	
         	if (saldoActual >= monto && monto > 0) {

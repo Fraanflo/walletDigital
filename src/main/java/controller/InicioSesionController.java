@@ -24,7 +24,21 @@ public class InicioSesionController extends HttpServlet {
 	    private UsuarioService usuarioService;
 	    private UsuarioDAO usuarioDao;
 
-	    /**
+	    public void setUsuarioService(UsuarioService usuarioService) {
+	        this.usuarioService = usuarioService;
+	    }
+	   
+
+
+		public InicioSesionController(UsuarioService usuarioService, UsuarioDAO usuarioDao) {
+			super();
+			this.usuarioService = usuarioService;
+			this.usuarioDao = usuarioDao;
+		}
+
+
+
+		/**
 	     * Inicializa el servlet y prepara el entorno de ejecución
 	     * 
 	     * @param config ServletConfig que contiene configuracionn del servlet
@@ -56,7 +70,7 @@ public class InicioSesionController extends HttpServlet {
 	        Usuario autenticar = usuarioService.iniciarSesion(correo, clave);
 	        if (autenticar != null) {
 	            HttpSession session = req.getSession();
-	            session.setMaxInactiveInterval(900);
+	            
 	            session.setAttribute("correo", correo); 
 	            // Obtener el saldo del usuario
 	            int saldo = usuarioService.obtenerSaldoUsuario(correo);
@@ -70,4 +84,7 @@ public class InicioSesionController extends HttpServlet {
 	            resp.sendRedirect("inicio_sesion.jsp?error=true");
 	        }
 	    }
-	}
+
+		
+		}
+

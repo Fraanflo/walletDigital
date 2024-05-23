@@ -38,10 +38,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 				if (clave.equals(usuario.getClave())) {
 					return usuario; // usuario autenticado :D
 				} else {
+					System.out.println("clave incorrecta");
 					return null;// clave incorrecta :(
 				}
 			}
 		}
+		System.out.println("usuario no encontrado");
 		return null; // usuario no encontrado ?_?
 	}
 
