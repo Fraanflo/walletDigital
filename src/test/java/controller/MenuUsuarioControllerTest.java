@@ -1,6 +1,6 @@
 package controller;
 
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mock; 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -84,15 +84,15 @@ class MenuUsuarioControllerTest {
 
 	@Test
 	void testMenuSinCorreoUsuario() throws Exception {
-	    // Configurar el comportamiento simulado
-	    when(request.getSession()).thenReturn(session);
-	    when(request.getParameter("correo")).thenReturn(null);
+		// Configurar el comportamiento simulado
+		when(request.getSession()).thenReturn(session);
+		when(request.getParameter("correo")).thenReturn(null);
 
-	    // Ejecutar el método bajo prueba
-	    servlet.doPost(request, response);
+		// Ejecutar el método bajo prueba
+		servlet.doPost(request, response);
 
-	    // Verificar que se redirige al usuario a la página de inicio de sesión
-	    verify(response).sendRedirect("inicio_sesion.jsp");
+		// Verificar que se redirige al usuario a la página de inicio de sesión
+		verify(response).sendRedirect("inicio_sesion.jsp");
 	}
-	
+
 }

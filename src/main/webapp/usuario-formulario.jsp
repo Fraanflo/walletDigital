@@ -10,6 +10,7 @@
     <title>Formulario de Usuario</title>
 </head>
 <body>
+<div class="container text-center">
     <h1>Formulario de Usuario</h1>
     <form action="formulario-usuario" method="post" >
         <label for="nombre">Nombre:</label>
@@ -29,5 +30,6 @@
          <button onclick="window.location.href = 'inicio_sesion.jsp';">Volver a inicio de sesión</button>    
 
     </form>
+    </div>
 </body>
 </html>

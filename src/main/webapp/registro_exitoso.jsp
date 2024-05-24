@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>¡Registro Exitoso!</h1>
-    <p>El usuario se ha registrado correctamente.</p>
-    <p><a href="menu.jsp">Volver al menú</a></p>
+    <p>El usuario se ha registrado correctamente :D.</p>
+    <p><a href="inicio_sesion.jsp">Volver al login</a></p>
 </body>
 </html>

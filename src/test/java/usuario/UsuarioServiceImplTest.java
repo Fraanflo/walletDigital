@@ -37,7 +37,7 @@ class UsuarioServiceImplTest {
 
 		// Verificar el resultado
 		assertNotNull(resultado);
-		assertEquals(24, resultado.size());
+		assertEquals(24, resultado.size());// igual varia en la cantidad de usuarios
 
 	}
 
@@ -48,7 +48,7 @@ class UsuarioServiceImplTest {
 	void testCrearUsuario() {
 		// Crear un nuevo usuario
 		Usuario usuario = new Usuario("Hector Salazar", "hsalazar@mail.com", "hola123", 10000,
-				new Timestamp(System.currentTimeMillis()));
+	    new Timestamp(System.currentTimeMillis()));
 
 		// Ejecutar el método que se está probando
 		boolean resultado = usuarioService.crearUsuario(usuario);

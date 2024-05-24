@@ -30,7 +30,8 @@ class RetirarControllerTest {
 	private UsuarioService usuarioService;
 
 	/**
-	 * Este método se ejecuta antes de cada prueba y se encarga de preparar el entorno para las pruebas.
+	 * Este método se ejecuta antes de cada prueba y se encarga de preparar el
+	 * entorno para las pruebas.
 	 */
 	@BeforeEach
 	void inicializar() {
@@ -41,15 +42,16 @@ class RetirarControllerTest {
 		servlet = new RetirarController(usuarioService, usuarioDao);
 		dispatcher = mock(RequestDispatcher.class);
 		request = mock(HttpServletRequest.class);
-		
 
 		when(request.getSession()).thenReturn(session);
 		when(request.getRequestDispatcher("/confirmacion-retiro.jsp")).thenReturn(dispatcher);
 	}
+
 	/**
 	 * Simulación en la cual se intenta realizar un retiro con saldo y monto válido
+	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException si ocurre un error de E/S
+	 * @throws IOException      si ocurre un error de E/S
 	 */
 	@Test
 	void testRetiroVálido() throws ServletException, IOException {
@@ -64,7 +66,6 @@ class RetirarControllerTest {
 		when(session.getAttribute("correo")).thenReturn(correo);
 		when(usuarioService.obtenerNombreUsuario(eq(correo))).thenReturn("Francisca Flores");
 		when(usuarioDao.actualizarSaldo(eq(correo), anyInt())).thenReturn(true);
-		
 
 		// Ejecutar el método bajo prueba
 		servlet.doPost(request, response);
@@ -75,10 +76,12 @@ class RetirarControllerTest {
 		verify(session).setAttribute("correo", "fran@mail.com");
 		verify(dispatcher).forward(request, response);
 	}
+
 	/**
 	 * Simulación en la cual se intenta realizar un retiro con saldo insuficiente
+	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException si ocurre un error de E/S
+	 * @throws IOException      si ocurre un error de E/S
 	 */
 	@Test
 	void testSaldoInsuficienteParaRetiro() throws ServletException, IOException {
@@ -91,18 +94,19 @@ class RetirarControllerTest {
 		when(request.getParameter("monto")).thenReturn(Integer.toString(monto));
 		when(session.getAttribute("saldo")).thenReturn(saldoActual);
 		when(session.getAttribute("correo")).thenReturn(correo);
-		
 
-		// ejecutar el método 
+		// ejecutar el método
 		servlet.doPost(request, response);
 
 		// Verificar el resultado
 		verify(response).sendRedirect("error-retiro.jsp");
 	}
+
 	/**
 	 * Simulación en la cual se intenta realizar un retiro de monto negativo
+	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException si ocurre un error de E/S
+	 * @throws IOException      si ocurre un error de E/S
 	 */
 	@Test
 	void testRetiroMontoNegativo() throws ServletException, IOException {

@@ -29,7 +29,19 @@ public class UsuarioFormularioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioService usuarioService;
 	private UsuarioDAO usuarioDao;
-	 /**
+	
+	
+	 public UsuarioFormularioController(UsuarioService usuarioService, UsuarioDAO usuarioDao) {
+		super();
+		this.usuarioService = usuarioService;
+		this.usuarioDao = usuarioDao;
+	}
+
+	public UsuarioFormularioController() {
+		super();
+	}
+
+	/**
      * inicializa el servlet 
      * 
      * @param config ServletConfig que contiene la configuración del servlet
@@ -43,6 +55,12 @@ public class UsuarioFormularioController extends HttpServlet {
 		usuarioService = new UsuarioServiceImpl(usuarioDao);
 	}
 
+    public void setUsuarioService(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+   
+
+
 	 /**
      * Maneja las solicitudes get para mostrar el formulario de registro
      * 
@@ -54,7 +72,8 @@ public class UsuarioFormularioController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("usuario-formulario.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/usuario-formulario.jsp");
+		System.out.println("dispatcher: " +dispatcher);
 		dispatcher.forward(req, resp);
 	}
 	 /**
@@ -90,4 +109,8 @@ public class UsuarioFormularioController extends HttpServlet {
 		}
 	}
 
-}
+	
+	}
+
+
+

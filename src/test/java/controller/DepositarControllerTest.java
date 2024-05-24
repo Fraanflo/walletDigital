@@ -1,6 +1,6 @@
 package controller;
 
-import org.junit.jupiter.api.BeforeEach; 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
@@ -29,7 +29,8 @@ class DepositarControllerTest {
 	private UsuarioService usuarioService;
 
 	/**
-	 * Este método se ejecuta antes de cada prueba y se encarga de preparar el entorno para las pruebas.
+	 * Este método se ejecuta antes de cada prueba y se encarga de preparar el
+	 * entorno para las pruebas.
 	 */
 	@BeforeEach
 	void inicializar() {
@@ -44,12 +45,12 @@ class DepositarControllerTest {
 		when(request.getSession()).thenReturn(session);
 		when(request.getRequestDispatcher("/confirmacion-deposito.jsp")).thenReturn(dispatcher);
 	}
-	
+
 	/**
 	 * simulación en la cual se realiza un depósito válido
 	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException si ocurre un error de E/S
+	 * @throws IOException      si ocurre un error de E/S
 	 */
 	@Test
 	void testDepositoVálido() throws ServletException, IOException {
@@ -74,10 +75,12 @@ class DepositarControllerTest {
 		verify(session).setAttribute("correo", "fran@mail.com");
 		verify(dispatcher).forward(request, response);
 	}
+
 	/**
 	 * Simulación en la cual se intenta realizar un deposito con saldo insuficiente
+	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException si ocurre un error de E/S
+	 * @throws IOException      si ocurre un error de E/S
 	 */
 	@Test
 	void testSaldoInsuficiente() throws ServletException, IOException {
@@ -97,10 +100,12 @@ class DepositarControllerTest {
 		// Verificar el resultado
 		verify(response).sendRedirect("error-deposito.jsp");
 	}
+
 	/**
 	 * Simulación en la cual se intenta realizar un deposito con un monto negativo
+	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException si ocurre un error de E/S
+	 * @throws IOException      si ocurre un error de E/S
 	 */
 	@Test
 	void testDepositoMontoNegativo() throws ServletException, IOException {
