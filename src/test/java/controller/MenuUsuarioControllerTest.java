@@ -1,6 +1,6 @@
 package controller;
 
-import static org.mockito.Mockito.mock; 
+import static org.mockito.Mockito.mock;  
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -10,13 +10,14 @@ import org.mockito.MockitoAnnotations;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import usuario.UsuarioDAO;
 import usuario.UsuarioService;
-
+/**
+ * Pruebas unitarias del servlet MenuUsuarioController 
+ */
 class MenuUsuarioControllerTest {
 	private MenuUsuarioController servlet;
 	private HttpServletRequest request;
@@ -26,8 +27,12 @@ class MenuUsuarioControllerTest {
 	private UsuarioDAO usuarioDao;
 	private ServletConfig config;
 
+	/**
+	 * preparación entorno de prueba
+	 * @throws ServletException  si ocurre un error de ejecucion con el servlet
+	 */
 	@BeforeEach
-	void setUp() throws ServletException {
+	void init() throws ServletException {
 		MockitoAnnotations.initMocks(this);
 
 		// Crear mocks para las dependencias
@@ -63,7 +68,10 @@ class MenuUsuarioControllerTest {
 		verify(session).setAttribute("nombre", "Francisca Flores");
 		verify(response).sendRedirect("depositar.jsp");
 	}
-
+/**
+ * prueba método Retirar del menú
+ * @throws Exception si ocurre un error de ejecucion con el servlet
+ */
 	@Test
 	void testMenuRetirar() throws Exception {
 		// Configurar el comportamiento simulado
@@ -81,7 +89,10 @@ class MenuUsuarioControllerTest {
 		verify(session).setAttribute("nombre", "Francisca Flores");
 		verify(response).sendRedirect("retirar.jsp");
 	}
-
+/**
+ * prueba método menu si correo es null manda a inicio_sesion.jsp
+ * @throws Exception si ocurre un error de ejecucion con el servlet
+ */
 	@Test
 	void testMenuSinCorreoUsuario() throws Exception {
 		// Configurar el comportamiento simulado

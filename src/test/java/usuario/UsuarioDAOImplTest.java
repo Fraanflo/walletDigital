@@ -47,26 +47,8 @@ private UsuarioDAOImpl usuarioDAO;
 	        boolean creado = usuarioDAO.crearUsuario(usuario);
 	        assertTrue(creado);
 	    }
-	    /**
-	     * Prueba para editar los datos de un usuario
-	     */
-	    @Test
-	    void testEditarUsuario() {
-	        int user_id = 4;
-	        Usuario usuario = usuarioDAO.obtenerPorId(user_id);
-	        usuario.setNombre("Anabelle Rodriguez");
-	        int registrosAfectados = usuarioDAO.editarUsuario(usuario);
-	        assertEquals(1, registrosAfectados);
-	    }
-	    /**
-	     * Prueba para probar el metodo EliminarUsuario segun su id
-	     */
-	    @Test
-	    void testEliminarUsuario() {
-	        int user_id = 47;
-	        int registrosAfectados = usuarioDAO.eliminarUsuario(user_id);
-	        assertEquals(1, registrosAfectados);
-	    }
+	  
+	
 	    /**
 	     * Prueba para consultar el saldo de un usuario mediante su correo 
 	     */

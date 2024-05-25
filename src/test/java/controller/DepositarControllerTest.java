@@ -50,7 +50,7 @@ class DepositarControllerTest {
 	 * simulación en la cual se realiza un depósito válido
 	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException      si ocurre un error de E/S
+	 * @throws IOException si ocurre un error de E/S
 	 */
 	@Test
 	void testDepositoVálido() throws ServletException, IOException {
@@ -76,19 +76,13 @@ class DepositarControllerTest {
 		verify(dispatcher).forward(request, response);
 	}
 
-	/**
-	 * Simulación en la cual se intenta realizar un deposito con saldo insuficiente
-	 * 
-	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException      si ocurre un error de E/S
-	 */
 	
 
 	/**
 	 * Simulación en la cual se intenta realizar un deposito con un monto negativo
 	 * 
 	 * @throws ServletException si ocurre un error en el servlet
-	 * @throws IOException      si ocurre un error de E/S
+	 * @throws IOException si ocurre un error de E/S
 	 */
 	@Test
 	void testDepositoMontoNegativo() throws ServletException, IOException {

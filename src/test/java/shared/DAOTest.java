@@ -91,14 +91,14 @@ class DAOTest {
 	 */
 	@Test
 	protected void testEjecutarSql() {
-		// Definir la consulta
+		// definir la consulta
 		String sql = "insert into usuario (nombre, correo, clave, saldo, fecha_de_creacion) values "
 				+ "('Hugo López', 'hlopez@mail.com', 'hola123', 100000, NOW())";
 
 		// ejecuta la consulta y obtiene el num de registros afectados
 		int registrosAfectados = dao.ejecutarSql(sql);
 
-		// Verificar que se haya insertado correctamente un registro
+		// Verificar que se haya insertado correctamente el registro
 		assertEquals(1, registrosAfectados);
 	}
 

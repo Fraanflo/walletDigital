@@ -1,8 +1,6 @@
 package usuario;
 
-
-
-import java.sql.ResultSet; 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +8,13 @@ import java.util.List;
 import entidad.Usuario;
 import shared.DAO;
 
+/**
+ * Clase implementación usuarioDAO que interactúa con la base de datos
+ */
 public class UsuarioDAOImpl extends DAO implements UsuarioDAO {
-
+	/**
+	 * método para obtener listado de usuarios
+	 */
 	@Override
 	public List<Usuario> getListado() {
 		List<Usuario> listado = new ArrayList<>();
@@ -29,6 +32,9 @@ public class UsuarioDAOImpl extends DAO implements UsuarioDAO {
 		return listado;
 	}
 
+	/**
+	 * método para obtener usuario por id
+	 */
 	@Override
 	public Usuario obtenerPorId(int user_id) {
 		try {
@@ -48,6 +54,9 @@ public class UsuarioDAOImpl extends DAO implements UsuarioDAO {
 		}
 	}
 
+	/**
+	 * método para crear un usuario en la base de datos
+	 */
 	@Override
 	public boolean crearUsuario(Usuario usuario) {
 		String sql = "insert into usuario (nombre, correo, clave, saldo, fecha_de_creacion) values ('";
@@ -63,70 +72,49 @@ public class UsuarioDAOImpl extends DAO implements UsuarioDAO {
 	}
 
 	@Override
-	public int editarUsuario(Usuario usuario) {
-		String sql = "update usuario set ";
-		sql += "nombre = '" + usuario.getNombre() + "', ";
-		sql += "correo = '" + usuario.getCorreo() + "', ";
-		sql += "clave = '" + usuario.getClave() + "', ";
-		sql += "saldo = " + usuario.getSaldo() + ", ";
-		sql += "fecha_de_creacion = '" + usuario.getFecha_de_creacion() + "' ";
-		sql += "WHERE user_id = " + usuario.getUser_id();
+	public int consultarSaldoUsuario(String correo) {
+		try {
+			String sqlConsulta = "select saldo from usuario where correo = ?";
+			ResultSet rs = consultarPorCorreo(sqlConsulta, correo);
 
-		
-		return this.ejecutarSql(sql);
+			int saldo = 0;
+			if (rs.next()) {
+				saldo = rs.getInt("saldo");
+			}
+
+			return saldo;
+		} catch (SQLException e) {
+			System.out.println("Error al consultar el saldo del usuario: " + e.getMessage());
+			return 0;
+		}
+	}
+
+	public String consultarNombre(String correo) {
+		String sqlConsulta = "select nombre from usuario where correo = ?";
+		ResultSet rs = consultarPorCorreo(sqlConsulta, correo);
+
+		try {
+			if (rs != null && rs.next()) {
+				return rs.getString("nombre");
+			}
+		} catch (SQLException e) {
+			System.out.println("Error en consultar el nombre del usuario: " + e.getMessage());
+		} finally {
+		}
+
+		return null;
 	}
 
 	@Override
-	public int eliminarUsuario(int user_id) {
-		String sql = "delete from usuario where user_id= " + user_id;
-		return this.ejecutarSql(sql);
+	public boolean actualizarSaldo(String correo, int nuevoSaldo) {
+		try {
+			String sql = "update usuario set saldo = " + nuevoSaldo + " where correo = '" + correo + "'";
+			int registrosModificados = ejecutarSql(sql);
+			return registrosModificados > 0;
+		} catch (Exception e) {
+			System.out.println("Error en actualizar el saldo del usuario: " + e.getMessage());
+			return false;
+		}
+
 	}
-
-
-@Override
-public int consultarSaldoUsuario(String correo) {
-    try {
-        String sqlConsulta = "select saldo from usuario where correo = ?";
-        ResultSet rs = consultarPorCorreo(sqlConsulta, correo);
-        
-        int saldo = 0;
-        if (rs.next()) {
-            saldo = rs.getInt("saldo");
-        }
-
-        return saldo;
-    } catch (SQLException e) {
-        System.out.println("Error al consultar el saldo del usuario: " + e.getMessage());
-        return 0;
-    }
-}
-	
-public String consultarNombre(String correo) {
-    String sqlConsulta = "select nombre from usuario where correo = ?";
-    ResultSet rs = consultarPorCorreo(sqlConsulta, correo);
-    
-    try {
-        if (rs != null && rs.next()) {
-            return rs.getString("nombre");
-        }
-    } catch (SQLException e) {
-        System.out.println("Error en consultar el nombre del usuario: " + e.getMessage());
-    } finally {
-    }
-
-    return null;
-}
-
-@Override
-public boolean actualizarSaldo(String correo, int nuevoSaldo) {
-	try {
-        String sql = "update usuario set saldo = " + nuevoSaldo + " where correo = '" + correo + "'";
-        int registrosModificados = ejecutarSql(sql);
-        return registrosModificados > 0;
-    } catch (Exception e) {
-        System.out.println("Error en actualizar el saldo del usuario: " + e.getMessage());
-        return false;
-    }
-
-}
 }

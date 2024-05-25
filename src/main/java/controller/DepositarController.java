@@ -97,7 +97,7 @@ public class DepositarController extends HttpServlet {
 					dispatcher.forward(req, resp);
 
 				} else {
-					// si falla la actualización en la base de datos, redirige a errorBD
+					// si falla la actualización en la base de datos, redirige a errorBD.jsp
 					resp.sendRedirect("errorBD.jsp");
 				}
 			} else {

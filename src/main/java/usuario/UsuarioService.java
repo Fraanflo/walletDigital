@@ -3,7 +3,9 @@ package usuario;
 import java.util.List;
 
 import entidad.Usuario;
-
+/**
+ * Interface UsuarioService que contiene las cabeceras de los métodos que contienen la lógica de negocio 
+ */
 public interface UsuarioService {
 
 	boolean crearUsuario(Usuario usuario);

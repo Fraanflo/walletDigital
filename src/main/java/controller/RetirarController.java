@@ -62,6 +62,7 @@ public class RetirarController extends HttpServlet {
      * @throws ServletException si ocurre un error en el servlet
      * @throws IOException si ocurre un error de entrada/salida 
      */
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();

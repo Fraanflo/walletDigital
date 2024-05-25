@@ -15,7 +15,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import usuario.UsuarioDAO;
 import usuario.UsuarioService;
-
+/**
+ * Pruebas unitarias del servlet InicioSesionController, donde se prueba la funcionalidad de sus métodos
+ *  a través de simulación
+ */
 class InicioSesionControllerTest {
 	private HttpSession session;
 	private HttpServletRequest request;
@@ -23,7 +26,9 @@ class InicioSesionControllerTest {
 	private InicioSesionController servlet;
 	private UsuarioDAO usuarioDao;
 	private UsuarioService usuarioService;
-
+/**
+ * preparación entorno de las pruebas
+ */
 	@BeforeEach
 	void setUp() {
 		MockitoAnnotations.initMocks(this);
@@ -36,7 +41,10 @@ class InicioSesionControllerTest {
 		response = mock(HttpServletResponse.class);
 		session = mock(HttpSession.class);
 	}
-
+/**
+ * prueba donde se simula un inicio de sesión exitoso 
+ * @throws Exception si ocurre un error de ejecucion con el servlet
+ */
 	@Test
 	void testInicioSesionExitoso() throws Exception {
 		String correo = "fran@mail.com";
@@ -60,7 +68,10 @@ class InicioSesionControllerTest {
 		verify(session).setAttribute("nombre", "Francisca Flores");
 		verify(response).sendRedirect("menu.jsp");
 	}
-
+/**
+ * prueba donde se simula un inicio de sesión fallido (se digita una clave incorrecta)
+ * @throws Exception si ocurre un error de ejecucion con el servlet
+ */
 	@Test
 	void testInicioSesionFallido() throws Exception {
 		// Configurar el comportamiento de la simulacion
