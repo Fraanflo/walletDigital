@@ -82,24 +82,7 @@ class DepositarControllerTest {
 	 * @throws ServletException si ocurre un error en el servlet
 	 * @throws IOException      si ocurre un error de E/S
 	 */
-	@Test
-	void testSaldoInsuficiente() throws ServletException, IOException {
-		// datos de prueba
-		int monto = 10000;
-		String correo = "fran@mail.com";
-		int saldoActual = 5000;
-
-		// Configurar el comportamiento simulado
-		when(request.getParameter("monto")).thenReturn(Integer.toString(monto));
-		when(session.getAttribute("saldo")).thenReturn(saldoActual);
-		when(session.getAttribute("correo")).thenReturn(correo);
-
-		// ejecutar el método
-		servlet.doPost(request, response);
-
-		// Verificar el resultado
-		verify(response).sendRedirect("error-deposito.jsp");
-	}
+	
 
 	/**
 	 * Simulación en la cual se intenta realizar un deposito con un monto negativo

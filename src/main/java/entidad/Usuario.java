@@ -58,6 +58,14 @@ public class Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public Usuario(String nombre, String correo, String clave, Timestamp fecha_de_creacion) {
+	super();
+	this.nombre = nombre;
+	this.correo = correo;
+	this.clave = clave;
+	this.fecha_de_creacion = fecha_de_creacion;
+}
 	/**
      * Obtiene el user_id  del usuario.
      * 

@@ -91,11 +91,10 @@ public class UsuarioFormularioController extends HttpServlet {
 		String nombre = req.getParameter("nombre");
 		String correo = req.getParameter("correo");
 		String clave = req.getParameter("clave");
-		int saldo = Integer.parseInt(req.getParameter("saldo"));
 
 		Timestamp fechaCreacion = new Timestamp(System.currentTimeMillis());
 		// Crea un objeto Usuario con los parámetros recibidos
-		Usuario usuario = new Usuario(nombre, correo, clave, saldo, fechaCreacion);
+		Usuario usuario = new Usuario(nombre, correo, clave, fechaCreacion);
 
 		// Guarda el usuario utilizando el servicio de usuario
 		boolean exito = usuarioService.crearUsuario(usuario);

@@ -21,7 +21,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public boolean crearUsuario(Usuario usuario) {
 		if (usuario != null && !usuario.getNombre().isBlank() && !usuario.getCorreo().isBlank()
-				&& !usuario.getClave().isBlank() && usuario.getSaldo() > 0) {
+				&& !usuario.getClave().isBlank() ) {
 			return usuarioDao.crearUsuario(usuario);
 		} else {
 			return false;

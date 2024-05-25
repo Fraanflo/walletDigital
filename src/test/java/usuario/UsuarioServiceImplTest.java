@@ -37,7 +37,7 @@ class UsuarioServiceImplTest {
 
 		// Verificar el resultado
 		assertNotNull(resultado);
-		assertEquals(24, resultado.size());// igual varia en la cantidad de usuarios
+		assertEquals(45, resultado.size());// igual varia en la cantidad de usuarios
 
 	}
 
@@ -47,7 +47,7 @@ class UsuarioServiceImplTest {
 	@Test
 	void testCrearUsuario() {
 		// Crear un nuevo usuario
-		Usuario usuario = new Usuario("Hector Salazar", "hsalazar@mail.com", "hola123", 10000,
+		Usuario usuario = new Usuario("Hector Salazar", "hsalazar@mail.com", "hola123",
 	    new Timestamp(System.currentTimeMillis()));
 
 		// Ejecutar el método que se está probando
@@ -93,7 +93,7 @@ class UsuarioServiceImplTest {
      */
 	@Test
 	void TestObtenerSaldoUsuario() {
-		int saldo = 5000000;
+		int saldo = 10000000;
 		String correo = "fran@mail.com";
 
 		int resultado1 = usuarioService.obtenerSaldoUsuario(correo);

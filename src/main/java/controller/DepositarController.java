@@ -78,7 +78,7 @@ public class DepositarController extends HttpServlet {
 		if (correo != null) {
 			int saldoActual = (int) session.getAttribute("saldo");
 
-			if (saldoActual >= monto && monto > 0) {
+			if ( monto > 0) {
 
 				int nuevoSaldo = saldoActual + monto;
 
