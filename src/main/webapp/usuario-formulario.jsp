@@ -62,7 +62,7 @@ footer {
 				type="password" id="clave" name="clave" required><br>
 			<br> <br>
 			<button class="btn btn-primary" type="submit">Crear Usuario</button>
-
+<br>
 			<br>
 			<br>
 			<button onclick="window.location.href = 'inicio_sesion.jsp';"
